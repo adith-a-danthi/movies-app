@@ -4,12 +4,14 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.example.moviesdb.data.dao.ActorDao
 import com.example.moviesdb.data.dao.MovieDao
 import com.example.moviesdb.data.entity.Actor
 import com.example.moviesdb.data.entity.Movie
 import com.example.moviesdb.data.entity.MovieActor
 import com.example.moviesdb.data.entity.MovieDesc
+import com.example.moviesdb.data.entity.convertor.ListToString
 
 @Database(
     entities = [
@@ -19,6 +21,7 @@ import com.example.moviesdb.data.entity.MovieDesc
         MovieActor::class
     ], version = 1, exportSchema = false
 )
+@TypeConverters(ListToString::class)
 abstract class MovieDB: RoomDatabase() {
 
     abstract fun movieDao(): MovieDao
